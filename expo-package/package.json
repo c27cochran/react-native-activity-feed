@@ -24,6 +24,8 @@
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-react": "^7.10.0",
     "expo": "^29.0.0",
+    "expo-image-picker": "^7.0.0",
+    "expo-permissions": "~7.0.0",
     "flow-bin": "^0.78.0",
     "flow-copy-source": "^2.0.2",
     "prettier": "^1.13.7",
