@@ -375,7 +375,8 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
   render() {
     const styles = buildStylesheet('statusUpdateForm', this.props.styles);
     return (
-      <View style={[this.props.fullscreen ? { flex: 1 } : {}]}>
+      <View style={[this.props.fullscreen ? { flex: 1 } : {borderColor: '#fff',
+        borderWidth: 1, borderRadius: 10, }]}>
         <View
           style={[
             styles.container,
@@ -415,7 +416,9 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                 {...this.props.textInputProps}
               />
             </View>
+          </View>
 
+          <View style={styles.newPostContainer}>
             <View
               style={[
                 styles.actionPanel,
