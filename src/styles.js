@@ -74,7 +74,7 @@ export const styles = {
   }),
   statusUpdateForm: StyleSheet.create({
     container: {
-      shadowOffset: { width: 0, height: -3 },
+      shadowOffset: { width: 0, height: 0 },
       shadowColor: 'black',
       shadowOpacity: 0.1,
       backgroundColor: '#f6f6f6',
