@@ -219,7 +219,7 @@ export default class Activity extends React.Component<Props> {
 
         {Boolean(image) && (
           <Image
-            style={{ width, height: width }}
+            style={[styles.content, { width, height: width }]}
             source={{ uri: image }}
             resizeMethod="resize"
             resizeMode="contain"
