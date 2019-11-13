@@ -378,13 +378,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
       <View style={[this.props.fullscreen ? { flex: 1 } : {borderColor: '#fff',
         borderWidth: 1, borderRadius: 10, }]}>
         <View
-          style={[
-            styles.container,
-            this.props.height ? { height: this.props.height } : { height: 80 },
-            this.state.focused ? styles.containerFocused : {},
-            this.state.og ? styles.containerFocusedOg : {},
-            this.props.fullscreen ? { flex: 1 } : {},
-          ]}
+          style={styles.container}
         >
           {this.state.og && (
             <UrlPreview
@@ -418,12 +412,19 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
             </View>
           </View>
 
+          <View style={{borderBottomWidth: 1, borderBottomColor: '#F0F0F0'}} />
           <View style={styles.newPostContainer}>
             <View
-              style={styles.actionPanel}
+              style={[
+                styles.actionPanel,
+                this.state.focused ? {} : styles.actionPanelBlur,
+              ]}
             >
               <View
-                style={styles.imageContainer}
+                style={[
+                  styles.imageContainer,
+                  this.state.focused ? {} : styles.imageContainerBlur,
+                ]}
               >
                 {this.state.image ? (
                   <React.Fragment>
