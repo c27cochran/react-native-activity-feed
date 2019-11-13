@@ -9,6 +9,8 @@ import {
   Platform,
   Keyboard,
 } from 'react-native';
+import Avatar from './Avatar';
+import type { Props as AvatarProps } from './Avatar';
 import { StreamApp } from '../Context';
 import UrlPreview from './UrlPreview';
 import { pickImage, androidTranslucentStatusBar } from '../native';
@@ -43,6 +45,10 @@ type Props = {|
   feedGroup: string,
   /** The user_id part of the feed that the activity should be posted to  */
   userId?: string,
+  /** Props used to render the Avatar component */
+  avatarProps?: AvatarProps,
+  /** Skips the Avatar component when provided */
+  noAvatar?: boolean,
   /** The verb that should be used to post the activity */
   activityVerb: string,
   /** Make the form full screen. This can be useful when you have a separate
@@ -398,6 +404,13 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
 
           <View style={styles.newPostContainer}>
             <View style={[styles.textInput]}>
+              {this.props.noAvatar || (
+                <Avatar
+                  size={48}
+                  styles={styles.avatar}
+                  {...this.props.avatarProps}
+                />
+              )}
               <TextInput
                 ref={this.textInputRef}
                 style={this.props.fullscreen ? { flex: 1 } : {}}
@@ -415,55 +428,60 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                 {...this.props.textInputProps}
               />
             </View>
+          </View>
 
+          <View
+            style={{ borderBottomWidth: 1, borderBottomColor: '#F0F0F0' }}
+          />
+          <View style={styles.newPostContainer}>
+            <View
+              style={[
+                styles.imageContainer,
+                // this.state.focused ? {} : styles.imageContainerBlur,
+              ]}
+            >
+              {this.state.image ? (
+                <React.Fragment>
+                  <Image
+                    source={{ uri: this.state.image }}
+                    style={
+                      this.state.imageState === ImageState.UPLOADING
+                        ? styles.image_loading
+                        : styles.image
+                    }
+                    resizeMethod="resize"
+                  />
+                  <View style={styles.imageOverlay}>
+                    {this.state.imageState === ImageState.UPLOADING ? (
+                      <ActivityIndicator color="#ffffff" />
+                    ) : (
+                      <TouchableOpacity onPress={this._removeImage}>
+                        <Image
+                          source={require('../images/icons/close-white.png')}
+                          style={[{ width: 24, height: 24 }]}
+                        />
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                </React.Fragment>
+              ) : (
+                <TouchableOpacity
+                  title="Pick an image from camera roll"
+                  onPress={this._pickImage}
+                >
+                  <Image
+                    source={require('../images/icons/gallery.png')}
+                    style={{ width: 20, height: 16 }}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
             <View
               style={[
                 styles.actionPanel,
-                this.state.focused ? {} : styles.actionPanelBlur,
+                // this.state.focused ? {} : styles.actionPanelBlur,
               ]}
             >
-              <View
-                style={[
-                  styles.imageContainer,
-                  this.state.focused ? {} : styles.imageContainerBlur,
-                ]}
-              >
-                {this.state.image ? (
-                  <React.Fragment>
-                    <Image
-                      source={{ uri: this.state.image }}
-                      style={
-                        this.state.imageState === ImageState.UPLOADING
-                          ? styles.image_loading
-                          : styles.image
-                      }
-                      resizeMethod="resize"
-                    />
-                    <View style={styles.imageOverlay}>
-                      {this.state.imageState === ImageState.UPLOADING ? (
-                        <ActivityIndicator color="#ffffff" />
-                      ) : (
-                        <TouchableOpacity onPress={this._removeImage}>
-                          <Image
-                            source={require('../images/icons/close-white.png')}
-                            style={[{ width: 24, height: 24 }]}
-                          />
-                        </TouchableOpacity>
-                      )}
-                    </View>
-                  </React.Fragment>
-                ) : (
-                  <TouchableOpacity
-                    title="Pick an image from camera roll"
-                    onPress={this._pickImage}
-                  >
-                    <Image
-                      source={require('../images/icons/gallery.png')}
-                      style={{ width: 24, height: 24 }}
-                    />
-                  </TouchableOpacity>
-                )}
-              </View>
               <TouchableOpacity
                 title="Pick an image from camera roll"
                 onPress={this.onSubmitForm}

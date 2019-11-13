@@ -60,11 +60,6 @@
     "prepack": "bin/prepack.sh",
     "postpack": "bin/postpack.sh"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "dotgit/hooks/pre-commit-format.sh && dotgit/hooks/pre-commit-reject-binaries.py"
-    }
-  },
   "dependencies": {
     "es6-symbol": "^3.1.1",
     "eslint-plugin-babel": "^5.3.0",

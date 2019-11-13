@@ -59,7 +59,7 @@ const AvatarInner = (props: InnerProps) => {
     onUploadButtonPress,
   } = props;
   const styles = buildStylesheet('avatar', props.styles || {});
-  const borderRadius = notRound ? undefined : size / 2;
+  const borderRadius = notRound ? undefined : 0 /* size / 2 */;
   return (
     <View
       style={[
