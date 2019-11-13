@@ -81,7 +81,7 @@ const AvatarInner = (props: InnerProps) => {
           },
         ]}
         source={source ? { uri: source } : require('../images/placeholder.png')}
-        resizeMethod="resize"
+        resizeMethod="contain"
       />
       {editButton ? (
         <UploadImage onUploadButtonPress={onUploadButtonPress} />

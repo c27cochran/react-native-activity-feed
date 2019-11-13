@@ -9,8 +9,6 @@ import {
   Platform,
   Keyboard,
 } from 'react-native';
-import Avatar from './Avatar';
-import type { Props as AvatarProps } from './Avatar';
 import { StreamApp } from '../Context';
 import UrlPreview from './UrlPreview';
 import { pickImage, androidTranslucentStatusBar } from '../native';
@@ -45,10 +43,6 @@ type Props = {|
   feedGroup: string,
   /** The user_id part of the feed that the activity should be posted to  */
   userId?: string,
-  /** Props used to render the Avatar component */
-  avatarProps?: AvatarProps,
-  /** Skips the Avatar component when provided */
-  noAvatar?: boolean,
   /** The verb that should be used to post the activity */
   activityVerb: string,
   /** Make the form full screen. This can be useful when you have a separate
@@ -404,13 +398,6 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
 
           <View style={styles.newPostContainer}>
             <View style={[styles.textInput]}>
-              {this.props.noAvatar || (
-                <Avatar
-                  size={48}
-                  styles={styles.avatar}
-                  {...this.props.avatarProps}
-                />
-              )}
               <TextInput
                 ref={this.textInputRef}
                 style={this.props.fullscreen ? { flex: 1 } : {}}
@@ -433,10 +420,11 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
           <View
             style={{ borderBottomWidth: 1, borderBottomColor: '#F0F0F0' }}
           />
-          <View style={styles.newPostContainer}>
+          <View style={{flexDirection: 'row'}}>
             <View
               style={[
                 styles.imageContainer,
+                {flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start'}
                 // this.state.focused ? {} : styles.imageContainerBlur,
               ]}
             >
@@ -470,7 +458,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                   onPress={this._pickImage}
                 >
                   <Image
-                    source={require('../images/icons/gallery.png')}
+                    source={require('../images/icons/gallery@3x.png')}
                     style={{ width: 20, height: 16 }}
                   />
                 </TouchableOpacity>
@@ -479,6 +467,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
             <View
               style={[
                 styles.actionPanel,
+                {flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end'}
                 // this.state.focused ? {} : styles.actionPanelBlur,
               ]}
             >
