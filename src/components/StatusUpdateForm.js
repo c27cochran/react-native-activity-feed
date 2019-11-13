@@ -379,6 +379,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
         <View
           style={[
             styles.container,
+            {borderRadius: 10},
             this.props.height ? { height: this.props.height } : { height: 80 },
             this.state.focused ? styles.containerFocused : {},
             this.state.og ? styles.containerFocusedOg : {},
@@ -415,62 +416,55 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                 {...this.props.textInputProps}
               />
             </View>
-          </View>
 
-          <View
-            style={{ borderBottomWidth: 1, borderBottomColor: '#F0F0F0' }}
-          />
-          <View style={{flexDirection: 'row'}}>
-            <View
-              style={[
-                styles.imageContainer,
-                {flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start'}
-                // this.state.focused ? {} : styles.imageContainerBlur,
-              ]}
-            >
-              {this.state.image ? (
-                <React.Fragment>
-                  <Image
-                    source={{ uri: this.state.image }}
-                    style={
-                      this.state.imageState === ImageState.UPLOADING
-                        ? styles.image_loading
-                        : styles.image
-                    }
-                    resizeMethod="resize"
-                  />
-                  <View style={styles.imageOverlay}>
-                    {this.state.imageState === ImageState.UPLOADING ? (
-                      <ActivityIndicator color="#ffffff" />
-                    ) : (
-                      <TouchableOpacity onPress={this._removeImage}>
-                        <Image
-                          source={require('../images/icons/close-white.png')}
-                          style={[{ width: 24, height: 24 }]}
-                        />
-                      </TouchableOpacity>
-                    )}
-                  </View>
-                </React.Fragment>
-              ) : (
-                <TouchableOpacity
-                  title="Pick an image from camera roll"
-                  onPress={this._pickImage}
-                >
-                  <Image
-                    source={require('../images/icons/gallery.png')}
-                    style={{ width: 20, height: 16 }}
-                  />
-                </TouchableOpacity>
-              )}
-            </View>
             <View
               style={[
                 styles.actionPanel,
-                {flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end'}
                 // this.state.focused ? {} : styles.actionPanelBlur,
               ]}
             >
+              <View
+                style={[
+                  styles.imageContainer,
+                  // this.state.focused ? {} : styles.imageContainerBlur,
+                ]}
+              >
+                {this.state.image ? (
+                  <React.Fragment>
+                    <Image
+                      source={{ uri: this.state.image }}
+                      style={
+                        this.state.imageState === ImageState.UPLOADING
+                          ? styles.image_loading
+                          : styles.image
+                      }
+                      resizeMethod="resize"
+                    />
+                    <View style={styles.imageOverlay}>
+                      {this.state.imageState === ImageState.UPLOADING ? (
+                        <ActivityIndicator color="#ffffff" />
+                      ) : (
+                        <TouchableOpacity onPress={this._removeImage}>
+                          <Image
+                            source={require('../images/icons/close-white.png')}
+                            style={[{ width: 24, height: 24 }]}
+                          />
+                        </TouchableOpacity>
+                      )}
+                    </View>
+                  </React.Fragment>
+                ) : (
+                  <TouchableOpacity
+                    title="Pick an image from camera roll"
+                    onPress={this._pickImage}
+                  >
+                    <Image
+                      source={require('../images/icons/gallery.png')}
+                      style={{ width: 20, height: 16 }}
+                    />
+                  </TouchableOpacity>
+                )}
+              </View>
               <TouchableOpacity
                 title="Pick an image from camera roll"
                 onPress={this.onSubmitForm}
