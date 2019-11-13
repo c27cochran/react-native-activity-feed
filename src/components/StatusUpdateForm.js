@@ -420,12 +420,14 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
             <View
               style={[
                 styles.actionPanel,
+                styles.actionPanelBlur,
                 // this.state.focused ? {} : styles.actionPanelBlur,
               ]}
             >
               <View
                 style={[
                   styles.imageContainer,
+                  styles.imageContainerBlur,
                   // this.state.focused ? {} : styles.imageContainerBlur,
                 ]}
               >
