@@ -210,16 +210,16 @@ export default class Activity extends React.Component<Props> {
     text = text.trim();
 
     return (
-      <View style={styles.content}>
+      <View>
         {Boolean(text) && (
-          <View>
+          <View style={styles.content}>
             <Text>{this.renderText(text, this.props.activity)}</Text>
           </View>
         )}
 
         {Boolean(image) && (
           <Image
-            style={{ width, height: width }}
+            style={{ width, height: width, borderRadius: 10 }}
             source={{ uri: image }}
             resizeMethod="resize"
             resizeMode="contain"
@@ -230,7 +230,7 @@ export default class Activity extends React.Component<Props> {
           attachments.images &&
           attachments.images.length > 0 && (
             <Image
-              style={{ width, height: width }}
+              style={{ width, height: width, borderRadius: 10 }}
               source={{ uri: attachments.images[0] }}
               resizeMethod="resize"
               resizeMode="contain"
