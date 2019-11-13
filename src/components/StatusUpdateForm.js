@@ -375,117 +375,113 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
   render() {
     const styles = buildStylesheet('statusUpdateForm', this.props.styles);
     return (
-      <View style={[this.props.fullscreen ? { flex: 1 } : {borderColor: '#fff',
-        borderWidth: 1, borderRadius: 10, }]}>
-        <View
-          style={[
-            styles.container,
-            this.props.height ? { height: this.props.height } : { height: 80 },
-            this.state.focused ? styles.containerFocused : {},
-            this.state.og ? styles.containerFocusedOg : {},
-            this.props.fullscreen ? { flex: 1 } : {},
-          ]}
-        >
-          {this.state.og && (
-            <UrlPreview
-              onPressDismiss={this._onPressDismiss}
-              og={this.state.og}
-              styles={
-                // $FlowFixMe
-                this.props.styles.urlPreview
-              }
+      <View
+        style={[
+          styles.container,
+          this.props.height ? { height: this.props.height } : { height: 80 },
+          this.state.focused ? styles.containerFocused : {},
+          this.state.og ? styles.containerFocusedOg : {},
+          this.props.fullscreen ? { flex: 1 } : {},
+        ]}
+      >
+        {this.state.og && (
+          <UrlPreview
+            onPressDismiss={this._onPressDismiss}
+            og={this.state.og}
+            styles={
+              // $FlowFixMe
+              this.props.styles.urlPreview
+            }
+          />
+        )}
+
+        <View style={styles.newPostContainer}>
+          <View style={[styles.textInput]}>
+            <TextInput
+              ref={this.textInputRef}
+              style={this.props.fullscreen ? { flex: 1 } : {}}
+              multiline
+              onChangeText={(text) => {
+                this.setState({ textFromInput: text });
+                this._handleOgDebounced(text);
+              }}
+              value={this.state.textFromInput}
+              autocorrect={false}
+              placeholder="Share something..."
+              underlineColorAndroid="transparent"
+              onBlur={() => this.setState({ focused: false })}
+              onFocus={() => this.setState({ focused: true })}
+              {...this.props.textInputProps}
             />
-          )}
-
-          <View style={styles.newPostContainer}>
-            <View style={[styles.textInput]}>
-              <TextInput
-                ref={this.textInputRef}
-                style={this.props.fullscreen ? { flex: 1 } : {}}
-                multiline
-                onChangeText={(text) => {
-                  this.setState({ textFromInput: text });
-                  this._handleOgDebounced(text);
-                }}
-                value={this.state.textFromInput}
-                autocorrect={false}
-                placeholder="Share something..."
-                underlineColorAndroid="transparent"
-                onBlur={() => this.setState({ focused: false })}
-                onFocus={() => this.setState({ focused: true })}
-                {...this.props.textInputProps}
-              />
-            </View>
-          </View>
-
-          <View style={{borderBottomWidth: 1, borderBottomColor: '#F0F0F0'}} />
-          <View style={styles.newPostContainer}>
-            <View
-              style={[
-                styles.actionPanel,
-                this.state.focused ? {} : styles.actionPanelBlur,
-              ]}
-            >
-              <View
-                style={[
-                  styles.imageContainer,
-                  this.state.focused ? {} : styles.imageContainerBlur,
-                ]}
-              >
-                {this.state.image ? (
-                  <React.Fragment>
-                    <Image
-                      source={{ uri: this.state.image }}
-                      style={
-                        this.state.imageState === ImageState.UPLOADING
-                          ? styles.image_loading
-                          : styles.image
-                      }
-                      resizeMethod="resize"
-                    />
-                    <View style={styles.imageOverlay}>
-                      {this.state.imageState === ImageState.UPLOADING ? (
-                        <ActivityIndicator color="#ffffff" />
-                      ) : (
-                        <TouchableOpacity onPress={this._removeImage}>
-                          <Image
-                            source={require('../images/icons/close-white.png')}
-                            style={[{ width: 24, height: 24 }]}
-                          />
-                        </TouchableOpacity>
-                      )}
-                    </View>
-                  </React.Fragment>
-                ) : (
-                  <TouchableOpacity
-                    title="Pick an image from camera roll"
-                    onPress={this._pickImage}
-                  >
-                    <Image
-                      source={require('../images/icons/gallery.png')}
-                      style={{ width: 30, height: 24 }}
-                    />
-                  </TouchableOpacity>
-                )}
-              </View>
-              <TouchableOpacity
-                title="Pick an image from camera roll"
-                onPress={this.onSubmitForm}
-                disabled={!this._canSubmit()}
-              >
-                <Image
-                  source={
-                    this._canSubmit()
-                      ? require('../images/icons/send.png')
-                      : require('../images/icons/send-disabled.png')
-                  }
-                  style={styles.submitImage}
-                />
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
-        {this.props.fullscreen ? <KeyboardSpacer /> : null}
+
+        <View style={{borderBottomWidth: 1, borderBottomColor: '#F0F0F0'}} />
+        <View style={styles.newPostContainer}>
+          <View
+            style={[
+              styles.actionPanel,
+              this.state.focused ? {} : styles.actionPanelBlur,
+            ]}
+          >
+            <View
+              style={[
+                styles.imageContainer,
+                this.state.focused ? {} : styles.imageContainerBlur,
+              ]}
+            >
+              {this.state.image ? (
+                <React.Fragment>
+                  <Image
+                    source={{ uri: this.state.image }}
+                    style={
+                      this.state.imageState === ImageState.UPLOADING
+                        ? styles.image_loading
+                        : styles.image
+                    }
+                    resizeMethod="resize"
+                  />
+                  <View style={styles.imageOverlay}>
+                    {this.state.imageState === ImageState.UPLOADING ? (
+                      <ActivityIndicator color="#ffffff" />
+                    ) : (
+                      <TouchableOpacity onPress={this._removeImage}>
+                        <Image
+                          source={require('../images/icons/close-white.png')}
+                          style={[{ width: 24, height: 24 }]}
+                        />
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                </React.Fragment>
+              ) : (
+                <TouchableOpacity
+                  title="Pick an image from camera roll"
+                  onPress={this._pickImage}
+                >
+                  <Image
+                    source={require('../images/icons/gallery.png')}
+                    style={{ width: 30, height: 24 }}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
+            <TouchableOpacity
+              title="Pick an image from camera roll"
+              onPress={this.onSubmitForm}
+              disabled={!this._canSubmit()}
+            >
+              <Image
+                source={
+                  this._canSubmit()
+                    ? require('../images/icons/send.png')
+                    : require('../images/icons/send-disabled.png')
+                }
+                style={styles.submitImage}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   }
