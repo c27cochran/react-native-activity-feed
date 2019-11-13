@@ -459,12 +459,15 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                 <TouchableOpacity
                   title="Pick an image from camera roll"
                   onPress={this._pickImage}
+                  style={{flexDirection: 'row'}}
                 >
                   <Image
                     source={require('../images/icons/gallery.png')}
                     style={{ width: 30, height: 24 }}
                   />
-                  <Text style={{fontSize: 14, color: '#9393aa'}}>
+                  <Text
+                    style={{fontSize: 14, color: '#9393aa'}}
+                  >
                     Photo
                   </Text>
                 </TouchableOpacity>
