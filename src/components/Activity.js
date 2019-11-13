@@ -218,23 +218,25 @@ export default class Activity extends React.Component<Props> {
         )}
 
         {Boolean(image) && (
-          <Image
-            style={{ width, height: width, borderRadius: 10 }}
-            source={{ uri: image }}
-            resizeMethod="resize"
-            resizeMode="contain"
-          />
+          <View style={styles.content}>
+            <Image
+              style={{ width, height: width, borderRadius: 10 }}
+              source={{ uri: image }}
+              resizeMethod="resize"
+            />
+          </View>
         )}
 
         {attachments &&
           attachments.images &&
           attachments.images.length > 0 && (
-            <Image
-              style={{ width, height: width, borderRadius: 10 }}
-              source={{ uri: attachments.images[0] }}
-              resizeMethod="resize"
-              resizeMode="contain"
-            />
+          <View style={styles.content}>
+              <Image
+                style={{ width, height: width, borderRadius: 10 }}
+                source={{ uri: attachments.images[0] }}
+                resizeMethod="resize"
+              />
+          </View>
           )}
         {attachments &&
           attachments.og &&
