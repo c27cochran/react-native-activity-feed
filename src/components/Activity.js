@@ -210,16 +210,16 @@ export default class Activity extends React.Component<Props> {
     text = text.trim();
 
     return (
-      <View>
+      <View style={styles.content}>
         {Boolean(text) && (
-          <View style={styles.content}>
+          <View>
             <Text>{this.renderText(text, this.props.activity)}</Text>
           </View>
         )}
 
         {Boolean(image) && (
           <Image
-            style={[styles.content, { width, height: width }]}
+            style={{ width, height: width }}
             source={{ uri: image }}
             resizeMethod="resize"
             resizeMode="contain"
