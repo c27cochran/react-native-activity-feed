@@ -395,9 +395,9 @@ export const styles = {
   }),
   commentItem: StyleSheet.create({
     container: {
-      flexDirection: 'row',
-      flex: 1,
-      alignItems: 'flex-start',
+      // flexDirection: 'row',
+      // flex: 1,
+      // alignItems: 'flex-start',
       paddingTop: 12,
       paddingBottom: 12,
       paddingRight: 15,
