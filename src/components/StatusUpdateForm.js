@@ -466,7 +466,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                     style={{ width: 30, height: 24 }}
                   />
                   <Text
-                    style={{fontSize: 14, color: '#9393aa'}}
+                    style={{marginLeft: 7, marginTop: 5, fontSize: 14, color: '#9393aa'}}
                   >
                     Photo
                   </Text>
