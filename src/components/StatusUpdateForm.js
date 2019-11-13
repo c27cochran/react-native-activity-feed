@@ -420,16 +420,10 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
 
           <View style={styles.newPostContainer}>
             <View
-              style={[
-                styles.actionPanel,
-                this.state.focused ? {} : styles.actionPanelBlur,
-              ]}
+              style={styles.actionPanel}
             >
               <View
-                style={[
-                  styles.imageContainer,
-                  this.state.focused ? {} : styles.imageContainerBlur,
-                ]}
+                style={styles.imageContainer}
               >
                 {this.state.image ? (
                   <React.Fragment>
@@ -462,7 +456,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                   >
                     <Image
                       source={require('../images/icons/gallery.png')}
-                      style={{ width: 20, height: 16 }}
+                      style={{ width: 30, height: 24 }}
                     />
                   </TouchableOpacity>
                 )}
