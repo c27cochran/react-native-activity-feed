@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Platform,
   Keyboard,
+  Text,
 } from 'react-native';
 import { StreamApp } from '../Context';
 import UrlPreview from './UrlPreview';
@@ -463,6 +464,9 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                     source={require('../images/icons/gallery.png')}
                     style={{ width: 30, height: 24 }}
                   />
+                  <Text style={{fontSize: 14, color: '#9393aa'}}>
+                    Photo
+                  </Text>
                 </TouchableOpacity>
               )}
             </View>
