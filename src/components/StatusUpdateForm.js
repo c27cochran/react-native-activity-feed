@@ -379,7 +379,6 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
         <View
           style={[
             styles.container,
-            {borderRadius: 10},
             this.props.height ? { height: this.props.height } : { height: 80 },
             this.state.focused ? styles.containerFocused : {},
             this.state.og ? styles.containerFocusedOg : {},
@@ -420,15 +419,13 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
             <View
               style={[
                 styles.actionPanel,
-                styles.actionPanelBlur,
-                // this.state.focused ? {} : styles.actionPanelBlur,
+                this.state.focused ? {} : styles.actionPanelBlur,
               ]}
             >
               <View
                 style={[
                   styles.imageContainer,
-                  styles.imageContainerBlur,
-                  // this.state.focused ? {} : styles.imageContainerBlur,
+                  this.state.focused ? {} : styles.imageContainerBlur,
                 ]}
               >
                 {this.state.image ? (
