@@ -222,6 +222,7 @@ export default class Activity extends React.Component<Props> {
             style={{ width, height: width }}
             source={{ uri: image }}
             resizeMethod="resize"
+            resizeMode="contain"
           />
         )}
 
@@ -232,6 +233,7 @@ export default class Activity extends React.Component<Props> {
               style={{ width, height: width }}
               source={{ uri: attachments.images[0] }}
               resizeMethod="resize"
+              resizeMode="contain"
             />
           )}
         {attachments &&

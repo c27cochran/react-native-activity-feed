@@ -59,6 +59,9 @@ const UserBar = ({
 
       <View style={styles.content}>
         <Text style={styles.username}>{username}</Text>
+        {time && (
+          <Text style={styles.time}>{time}</Text>
+        )}
         <View style={{ flexDirection: 'row' }}>
           {icon !== undefined ? (
             <Image
@@ -69,11 +72,6 @@ const UserBar = ({
           {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
         </View>
       </View>
-      {time && (
-        <View>
-          <Text style={styles.time}>{time}</Text>
-        </View>
-      )}
       {follow && (
         <View>
           <FollowButton followed />
