@@ -213,14 +213,14 @@ export default class Activity extends React.Component<Props> {
       <View>
         {Boolean(text) && (
           <View style={styles.content}>
-            <Text>{this.renderText(text, this.props.activity)}</Text>
+            <Text style={styles.contentText}>{this.renderText(text, this.props.activity)}</Text>
           </View>
         )}
 
         {Boolean(image) && (
           <View style={styles.content}>
             <Image
-              style={{ width, height: width, borderRadius: 10 }}
+              style={{ width, height: width, borderRadius: 5 }}
               source={{ uri: image }}
               resizeMethod="resize"
             />
@@ -232,7 +232,7 @@ export default class Activity extends React.Component<Props> {
           attachments.images.length > 0 && (
           <View style={styles.content}>
               <Image
-                style={{ width, height: width, borderRadius: 10 }}
+                style={{ width, height: width, borderRadius: 5 }}
                 source={{ uri: attachments.images[0] }}
                 resizeMethod="resize"
               />
