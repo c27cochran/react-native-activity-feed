@@ -39,23 +39,28 @@ export default class CommentItem extends React.Component<Props> {
     const { comment } = this.props;
     const styles = buildStylesheet('commentItem', this.props.styles || {});
     return (
-      <View style={styles.container}>
-        <Avatar source={comment.user.data.profileImage} size={25} noShadow />
-        <View style={styles.commentText}>
-          <Text>
-            <Text style={styles.commentAuthor}>{comment.user.data.name} </Text>
-            <Text style={styles.commentTime}>
-              {humanizeTimestamp(comment.created_at)}
+      <View>
+        <View style={styles.container}>
+          <Avatar source={comment.user.data.profileImage} size={25} noShadow />
+          <View style={styles.commentText}>
+            <Text>
+              <Text style={styles.commentAuthor}>{comment.user.data.name} </Text>
+              <Text style={styles.commentTime}>
+                {humanizeTimestamp(comment.created_at)}
+              </Text>
             </Text>
-          </Text>
+          </View>
         </View>
-        <View style={styles.commentText}>
-          <Text>
-            <Text style={styles.commentContent}>{comment.data.text} </Text>
-          </Text>
+        <View style={styles.container}>
+          <View style={styles.commentText}>
+            <Text>
+              <Text style={styles.commentContent}>{comment.data.text} </Text>
+            </Text>
+          </View>
+          {smartRender(this.props.Footer)}
         </View>
-        {smartRender(this.props.Footer)}
       </View>
+
     );
   }
 }
