@@ -42,17 +42,13 @@ export default class CommentItem extends React.Component<Props> {
       <View style={styles.container}>
         <View style={styles.commentText}>
           <Avatar source={comment.user.data.profileImage} size={25} noShadow />
-          <Text>
-            <Text style={styles.commentAuthor}>{comment.user.data.name} </Text>
-            <Text style={styles.commentTime}>
-              {humanizeTimestamp(comment.created_at)}
-            </Text>
+          <Text style={styles.commentAuthor}>{comment.user.data.name} </Text>
+          <Text style={styles.commentTime}>
+            {humanizeTimestamp(comment.created_at)}
           </Text>
         </View>
         <View style={styles.commentText}>
-          <Text>
-            <Text style={styles.commentContent}>{comment.data.text} </Text>
-          </Text>
+          <Text style={styles.commentContent}>{comment.data.text} </Text>
         </View>
         {smartRender(this.props.Footer)}
       </View>
