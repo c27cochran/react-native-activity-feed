@@ -458,7 +458,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                   onPress={this._pickImage}
                 >
                   <Image
-                    source={require('../images/icons/gallery@3x.png')}
+                    source={require('../images/icons/gallery.png')}
                     style={{ width: 20, height: 16 }}
                   />
                 </TouchableOpacity>
