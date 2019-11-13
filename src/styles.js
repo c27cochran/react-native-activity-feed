@@ -265,6 +265,9 @@ export const styles = {
       paddingLeft: 15,
       paddingRight: 15,
     },
+    contentText: {
+      fontSize: 17,
+    },
     mention: {
       color: '#0076FF',
       fontWeight: '700',
